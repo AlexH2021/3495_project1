@@ -8,7 +8,7 @@ import mysql.connector
 
 # start mysql connection
 mysql = mysql.connector.connect(
-    host='localhost', user='input', password='password', database='webdata', port=3306)
+    host='localhost', user='input', password='password', database='webdata', port=3307)
 mysql_cursor = mysql.cursor()
 
 

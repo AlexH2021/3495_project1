@@ -4,7 +4,7 @@ services:
     container_name: node_app
     build: ./app_code/
     ports:
-      - "5000:5000"
+      - "5001:5000"
     links:
       - mongo
     restart: unless-stopped
@@ -85,3 +85,10 @@ services:
     restart: always
     ports:
       - 3003:3003
+  analitics:
+    container_name: analysis_app
+    build: ./analitics/
+    links:
+      - mongo
+      - mysqldb
+    restart: always
