@@ -64,9 +64,11 @@ for record in records:
     elif bmi_dict['bmi'] >= 30:
         classification = 'obese'
     bmi_dict['classification'] = classification
-    print(bmi_dict)
     if bmi_dict['name'] in mongo_name_list:
-        print("name already exists")
+        myquery = {'name': bmi_dict['name']}
+        newvalue = {"$set": bmi_dict}
+        col.update_one(myquery, newvalue)
+        print("name already exists...... updating")
     else:
         print("name not exists")
         col.insert_one(bmi_dict)
