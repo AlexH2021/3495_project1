@@ -8,7 +8,7 @@ import mysql.connector
 
 # start mysql connection
 
-mysql = mysql.connector.connect(host='mysqldb', user='input', password='password', database='webdata', port=3306)
+mysql = mysql.connector.connect(host='54.186.3.238', user='input', password='password', database='webdata', port=3306)
 
 mysql_cursor = mysql.cursor()
 query = ("SELECT * from input_data")
@@ -21,7 +21,7 @@ print(records)
 
 
 # start mongodb connection
-client = MongoClient("mongodb://root:password@mongo:27017/")
+client = MongoClient("mongodb://root:password@54.186.3.238:27017/")
 
 
 # Database Name
