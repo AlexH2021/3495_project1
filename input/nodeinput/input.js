@@ -47,6 +47,18 @@ function insertData(name, height, weight, gender, age) {
     });
 }
 
+
+function mySlowFunction(baseNumber) {
+	console.time('mySlowFunction');
+	let result = 0;	
+	for (var i = Math.pow(baseNumber, 7); i >= 0; i--) {		
+		result += Math.atan(i) * Math.tan(i);
+	};
+	console.timeEnd('mySlowFunction');
+}
+
+
+
 const app = express();
 app.use(session({
     secret: 'secret',
@@ -79,6 +91,7 @@ app.get('/input', function (request, response) {
 
 app.post('/input_data', function (request, response) {
     // Capture the input fields
+    mySlowFunction(25); // higher number => more iterations => slower
     console.log(request.body);
     let name = request.body.name;
     let height = request.body.height;
