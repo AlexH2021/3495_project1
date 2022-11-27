@@ -2,6 +2,8 @@ const mysql = require('mysql');
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const input_url =  process.env.target
+
 
 function return_True() {
     return true;
@@ -21,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 // http://localhost:3000/
 app.get('/', function (request, response) {
     // Render login template
+    console.log('Input page is set to: ' + input_url)
     response.sendFile(path.join(__dirname + '/login.html'));
 });
 
@@ -35,7 +38,7 @@ app.post('/auth', function (request, response) {
         request.session.loggedin = true;
         request.session.username = username;
         // Redirect to home page
-        response.redirect('http://localhost:6868/input?username=' + username);
+        response.redirect('http://'+ input_url +':3001/input?username=' + username);
     } else {
         // response.send('Login Failed !!!!');
         // response.end();

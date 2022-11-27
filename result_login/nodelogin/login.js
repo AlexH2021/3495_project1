@@ -2,6 +2,8 @@ const mysql = require('mysql');
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const result_url =  process.env.target
+
 
 function return_True() {
     return true;
@@ -35,7 +37,7 @@ app.post('/auth', function (request, response) {
         request.session.loggedin = true;
         request.session.username = username;
         // Redirect to home page
-        response.redirect('http://localhost:5000/' + username);
+        response.redirect('http://'+ result_url +':5000/input?username=' + username);
     } else {
         // response.send('Login Failed !!!!');
         // response.end();
