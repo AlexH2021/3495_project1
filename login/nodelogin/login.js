@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const input_url =  process.env.INPUT_LB_SERVICE_HOST
+const input_url =  process.env.input_host
 
 
 function return_True() {
