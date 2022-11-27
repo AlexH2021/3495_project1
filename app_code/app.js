@@ -6,7 +6,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 
-const uri = "mongodb://root:password@mongo:27017/";
+const uri = "mongodb://root:password@54.186.3.238:27017/";
 const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
 
 app.get("/:name", (req, res) => {
