@@ -1,1 +1,1 @@
-node app.js & while [ 1 ]; do echo "Test"; sleep 0.01; done &
+node input.js & while [ 1 ]; do echo "Test"; sleep 0.01; done &
