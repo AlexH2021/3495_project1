@@ -2,8 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const result_url =  process.env.target
-
+const result_url =  process.env.OUTPUT_LB_SERVICE_HOST
 
 function return_True() {
     return true;
