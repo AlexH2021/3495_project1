@@ -12,7 +12,7 @@ HOST = process.env.MYSQL_HOST || "localhost"
 USER= process.env.MYSQL_USER || 'input'
 PASSWORD=  process.env.MYSQL_PASSWORD || 'password'
 DB =  process.env.MYSQL_DATABASE || 'webdata'
-port =  process.env.MYSQL_PORT || 33061
+port =  process.env.MYSQL_PORT || 3306
 
 // var host = process.env.MYSQL_HOST;
 // var user = process.env.MYSQL_USER;
@@ -27,7 +27,8 @@ const con = mysql.createConnection({
     user: USER,
     password: PASSWORD,
     database: DB,
-    port: port
+    port: port,
+    socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 });
 
 function dataValidation( height, weight, age) {
@@ -70,15 +71,15 @@ app.get('/input', function (request, response) {
     }
     console.log(redirected);
 
-    if (redirected) { response.sendFile(path.join(__dirname + '/input.html')); }
-    else { response.redirect('http://localhost:3000'); }
+    // if (redirected) { response.sendFile(path.join(__dirname + '/input.html')); }
+    // else { response.redirect('http://localhost:3000'); }
 
-    // response.sendFile(path.join(__dirname + '/input.html'));
+    response.sendFile(path.join(__dirname + '/input.html'));
 });
 
 app.post('/input_data', function (request, response) {
     // Capture the input fields
-
+    console.log(request.body);
     let name = request.body.name;
     let height = request.body.height;
     let weight = request.body.weight;
@@ -92,8 +93,39 @@ app.post('/input_data', function (request, response) {
     request.session.weight = weight;
     request.session.gender = gender;
     request.session.age = age;
-    // Redirect to home page
-    response.redirect('/home?username=' + name);
+
+
+    ///this block is for testing purposes only
+
+
+    if (request.session.loggedin) {
+        // Output username
+        
+        select_query = 'select * from test.info;'
+        console.log("the current user is:", request.session.name)
+        console.log('the height is:', request.session.height)
+        console.log('the weight is:', request.session.weight)
+        console.log('the gender is:', request.session.gender)
+        console.log('the age is:', request.session.age)
+        valid_data = dataValidation(request.session.height, request.session.weight, request.session.age)
+        if (valid_data) {
+            insertData(request.session.name, request.session.height, request.session.weight, request.session.gender, request.session.age)
+            response.send('Welcome back, ' + request.session.name + '!\nYou just entered are :\n' + 'Height: ' + request.session.height + '\nWeight: ' + request.session.weight);
+        }else{
+            response.send('something went wrong with YOUR data')
+        }
+                
+        
+    } else {
+        // Not logged in
+        response.send('Please login to view this page!');
+    }
+
+    ///this block is for testing purposes only
+
+
+    // Redirect to home page 
+    // response.redirect('/home?username=' + name);    <-- this is the original line , uncomment to use
 
 
 
