@@ -28,7 +28,7 @@ const con = mysql.createConnection({
     password: PASSWORD,
     database: DB,
     port: port,
-    socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
+    socketPath : '/var/run/mysqld/mysqld.sock'
 });
 
 function dataValidation( height, weight, age) {
