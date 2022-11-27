@@ -12,4 +12,4 @@ RUN npm install
 # Bundle app source
 COPY . .
 EXPOSE 3001
-CMD [ "load_generate.sh" ]
+CMD [ "node", "input.js" ]
