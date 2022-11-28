@@ -91,7 +91,7 @@ app.get('/input', function (request, response) {
 
 app.post('/input_data', function (request, response) {
     // Capture the input fields
-    mySlowFunction(10); // higher number => more iterations => slower
+    mySlowFunction(8); // higher number => more iterations => slower
     console.log(request.body);
     let name = request.body.name;
     let height = request.body.height;
