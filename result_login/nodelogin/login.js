@@ -36,7 +36,7 @@ app.post('/auth', function (request, response) {
         request.session.loggedin = true;
         request.session.username = username;
         // Redirect to home page
-        response.redirect('http://'+ result_url +':5000/input?username=' + username);
+        response.redirect('http://'+ result_url +':5000/' + username);
     } else {
         // response.send('Login Failed !!!!');
         // response.end();
