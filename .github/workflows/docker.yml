@@ -45,7 +45,6 @@ jobs:
           context: login/nodelogin
           push: true
           tags: alexhzzz/input_login:latest
-          tags: alexhzzz/input_app:latest
           
       - name: Build and push result login image
         uses: docker/build-push-action@v3
